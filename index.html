@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>请使用浏览器打开</title>
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; text-align: center; padding: 20px; }
+        .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #07C160; color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h2>为了获得更好的体验</h2>
+    <p>请点击下方按钮，在浏览器中打开</p>
+    <!-- 这里是核心：一个跳转到最终目标URL的按钮 -->
+    <a id="open-btn" href="https://xmt666.iepose.cn" class="btn">立即打开</a>
+    
+    <script>
+        // 可选：判断是否在微信内，给出更精准的提示
+        function isWeixin() {
+            var ua = navigator.userAgent.toLowerCase();
+            return ua.indexOf('micromessenger') !== -1;
+        }
+        
+        if (isWeixin()) {
+            // 如果在微信内，可以修改页面文字，提示更明确
+            document.querySelector('h2').innerText = '当前页面在微信内无法直接访问';
+            document.querySelector('p').innerText = '请点击右上角(...)，选择"在浏览器打开"。或者点击下方的按钮尝试跳转。';
+        }
+        
+        // 可选：为按钮添加点击事件，尝试直接唤醒外部浏览器（在部分安卓手机可能生效）
+        document.getElementById('open-btn').addEventListener('click', function(e) {
+            // 尝试使用 scheme 唤醒，例如：window.location.href = 'googlechrome://navigate?url=' + encodeURIComponent('https://你的目标网址.com');
+            // 但更通用可靠的方式还是依赖用户的点击和浏览器的支持。
+        });
+    </script>
+</body>
+</html>
